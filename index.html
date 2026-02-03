@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JARVIS</title>
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+header {
+  padding: 16px;
+  background: #020617;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+#chat {
+  padding: 16px;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+.msg {
+  margin-bottom: 12px;
+}
+.user { color: #38bdf8; }
+.jarvis { color: #a5f3fc; }
+footer {
+  display: flex;
+  padding: 10px;
+  background: #020617;
+}
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+button {
+  margin-left: 8px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #38bdf8;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<header>JARVIS – AI ผู้ช่วยส่วนบุคคล</header>
+
+<div id="chat">
+  <div class="msg jarvis">สวัสดีครับ ผมคือจาร์วิส วันนี้ต้องการให้ผมช่วยเรื่องอะไรเป็นพิเศษคะ</div>
+</div>
+
+<footer>
+  <input id="input" placeholder="พิมพ์คำสั่ง..." />
+  <button onclick="send()">ส่ง</button>
+</footer>
+
+<script>
+function send() {
+  const input = document.getElementById("input");
+  const chat = document.getElementById("chat");
+  if (!input.value) return;
+
+  chat.innerHTML += `<div class="msg user">คุณ: ${input.value}</div>`;
+
+  // logic จาร์วิสพื้นฐาน
+  let reply = "รับทราบครับ ผมกำลังคิดวิเคราะห์ให้คุณอยู่";
+
+  if (input.value.includes("แผน")) {
+    reply = "ผมจะแยกเป้าหมาย → ทางเลือก → ความเสี่ยง → ข้อเสนอให้ครับ";
+  } else if (input.value.includes("เตือน")) {
+    reply = "ผมบันทึกเป็นงานที่ต้องทำแล้ว (เวอร์ชันถัดไปจะเตือนอัตโนมัติ)";
+  }
+
+  setTimeout(() => {
+    chat.innerHTML += `<div class="msg jarvis">จาร์วิส: ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
+</script>
+</body>
+</html>
+add jarvis web app
